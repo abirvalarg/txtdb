@@ -23,4 +23,6 @@ public:
 	Row &row(size_t id) { return data[id]; }
 	const Row &row(size_t id) const { return data[id]; }
 	size_t row_count() const { return data.size(); }
+	void append(Row row) { data.push_back(row); }
+	bool save(const std::string &path) const;
 };
