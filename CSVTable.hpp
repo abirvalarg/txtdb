@@ -12,7 +12,8 @@ private:
 	Row header;
 	std::vector<Row> data;
 
-	std::vector<std::string> parse_line(std::string data);
+	static Row parse_line(std::string data);
+	static std::string row_to_str(const Row &row);
 
 public:
 	CSVTable() {}

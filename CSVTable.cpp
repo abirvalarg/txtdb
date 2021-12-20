@@ -1,6 +1,7 @@
 #include "CSVTable.hpp"
 #include <fstream>
 #include <list>
+#include <sstream>
 
 using namespace std;
 
@@ -31,6 +32,9 @@ bool CSVTable::save(const std::string &path) const
 	ofstream fp(path);
 	if(!fp.is_open())
 		return false;
+	fp << row_to_str(header) << '\n';
+	for(const auto row : data)
+		fp << row_to_str(row) << '\n';
 	fp.close();
 	return true;
 }
@@ -73,4 +77,25 @@ CSVTable::Row CSVTable::parse_line(string data)
 	}
 	resultList.push_back(buffer);
 	return vector<string>(resultList.cbegin(), resultList.cend());
+}
+
+string CSVTable::row_to_str(const CSVTable::Row &row)
+{
+	stringstream buffer;
+	bool first = true;
+	for(const string &col : row)
+	{
+		if(!first)
+			buffer << ',';
+		buffer << '"';
+		for(char ch : col)
+		{
+			buffer << ch;
+			if(ch == '"')
+				buffer << '"';
+		}
+		buffer << '"';
+		first = false;
+	}
+	return buffer.str();
 }
