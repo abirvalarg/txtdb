@@ -6,12 +6,21 @@
 class CSVTable
 {
 public:
+	typedef std::vector<std::string> Row;
+
+private:
+	Row header;
+	std::vector<Row> data;
+
+	std::vector<std::string> parse_line(std::string data);
+
+public:
 	CSVTable() {}
 	CSVTable(const std::string &path) { load(path); }
 
 	void load(const std::string &path);
-	void load_str(const std::string &data);
-	const std::vector<std::string> &get_header() const;
-	std::vector<std::string> &row(size_t id);
-	const std::vector<std::string> &row(size_t id) const;
+	const Row &get_header() const { return header; }
+	Row &row(size_t id) { return data[id]; }
+	const Row &row(size_t id) const { return data[id]; }
+	size_t row_count() const { return data.size(); }
 };
