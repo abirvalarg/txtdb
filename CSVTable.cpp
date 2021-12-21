@@ -48,6 +48,8 @@ CSVTable::Row CSVTable::parse_line(string data)
 	bool first = true;
 	for(char ch : data)
 	{
+		if(ch == '\n')
+			continue;
 		if(ch == ',')
 		{
 			if(!quoted)
@@ -98,4 +100,20 @@ string CSVTable::row_to_str(const CSVTable::Row &row)
 		first = false;
 	}
 	return buffer.str();
+}
+
+const CSVTable::Row &CSVTable::by_id(size_t id) const
+{
+	for(int i = 0; i < data.size(); i++)
+		if(atoi(data[i][0].c_str()) == id)
+			return data[i];
+	return __empty;
+}
+
+CSVTable::Row &CSVTable::by_id(size_t id)
+{
+	for(int i = 0; i < data.size(); i++)
+		if(atoi(data[i][0].c_str()) == id)
+			return data[i];
+	return __empty;
 }
