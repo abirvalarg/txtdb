@@ -14,4 +14,5 @@ public:
 	std::vector<std::string> subjects() const;
 	std::vector<int> grades(int sub, int stud) const;
 	float average(int sub, int stud) const;
+    bool save(const std::string &path);
 };

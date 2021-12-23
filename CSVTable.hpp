@@ -9,7 +9,7 @@ public:
 	typedef std::vector<std::string> Row;
 
 private:
-	static std::vector<std::string> __empty;
+	static Row __empty;
 
 	Row header;
 	std::vector<Row> data;

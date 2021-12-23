@@ -117,3 +117,5 @@ CSVTable::Row &CSVTable::by_id(size_t id)
 			return data[i];
 	return __empty;
 }
+
+CSVTable::Row CSVTable::__empty;

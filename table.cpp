@@ -43,3 +43,9 @@ float Table::average(int sub, int stud) const
 		sum += g;
 	return sum / grades.size();
 }
+
+bool Table::save(const string &path)
+{
+    return stud.save(path + "/stud.csv") && subj.save(path + "/subj.csv")
+        && grade.save(path + "/grade.csv");
+}
